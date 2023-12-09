@@ -8,12 +8,12 @@ import java.util.Locale;
  * Person model
  */
 public class Person {
-    public final int id;
-    public final String name;
-    public final String gender;
-    public final Date birthday;
-    public final Division division;
-    public final int salary;
+    private final int id;
+    private final String name;
+    private final String gender;
+    private final Date birthday;
+    private final Division division;
+    private final int salary;
 
     public Person(int id, String name, String gender, Date birthday, Division division, int salary) {
         this.id = id;
@@ -22,6 +22,30 @@ public class Person {
         this.birthday = birthday;
         this.division = division;
         this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public Division getDivision() {
+        return division;
+    }
+
+    public int getSalary() {
+        return salary;
     }
 
     @Override

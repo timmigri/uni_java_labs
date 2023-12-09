@@ -21,8 +21,10 @@ import com.opencsv.exceptions.CsvValidationException;
 import com.opencsv.CSVParserBuilder;
 
 public class CSVPersonReader {
+    /* ID counter for creating new divisions  */
+    private static int ID_COUNTER = 1;
     /** Map, that contains id of division by it's name */
-    Map<String, Integer> divisionIds = new HashMap<String, Integer>();
+    private Map<String, Integer> divisionIds = new HashMap<String, Integer>();
 
     /**
      * 
@@ -35,7 +37,9 @@ public class CSVPersonReader {
      * @throws ParseException
      */
     public List<Person> read(String pathToResource, char delimeter) throws IOException, CsvValidationException, URISyntaxException, ParseException {
+        ID_COUNTER = 1;
         divisionIds.clear();
+
         List<Person> persons = new ArrayList<Person>();
         CSVReader csvReader = new CSVReaderBuilder(new FileReader(getAbsolutePathToFile(pathToResource)))
             .withCSVParser(new CSVParserBuilder().withSeparator(delimeter).build())
@@ -75,8 +79,8 @@ public class CSVPersonReader {
         if (divisionIds.containsKey(name)) {
             return new Division(divisionIds.get(name), name);
         }
-        Division division = new Division(name);
-        divisionIds.put(name, division.id);
+        Division division = new Division(ID_COUNTER++, name);
+        divisionIds.put(name, division.getId());
         return division;
     }
 

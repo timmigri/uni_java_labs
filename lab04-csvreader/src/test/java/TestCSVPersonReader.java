@@ -12,9 +12,9 @@ public class TestCSVPersonReader {
     public void test_readingPersons() {
         try {
             List<Person> persons = reader.read("foreign_names.csv", ';');
-            Assertions.assertEquals(persons.get(0).id, 28281);
-            Assertions.assertEquals(persons.get(1).name, "Aala");
-            Assertions.assertEquals(persons.get(2).salary, 1000);
+            Assertions.assertEquals(persons.get(0).getId(), 28281);
+            Assertions.assertEquals(persons.get(1).getName(), "Aala");
+            Assertions.assertEquals(persons.get(2).getSalary(), 1000);
             Assertions.assertEquals(persons.size(), 25898);
         } catch (Exception e) {
             Assertions.fail(e.getMessage());
@@ -25,13 +25,13 @@ public class TestCSVPersonReader {
     public void test_readingPersonDivisions() {
         try {
             List<Person> persons = reader.read("foreign_names.csv", ';');
-            Assertions.assertEquals(persons.get(0).division.name, "I");
-            Assertions.assertNotEquals(persons.get(1).division, persons.get(2).division);
-            Assertions.assertEquals(persons.get(3).division, persons.get(5).division);
+            Assertions.assertEquals(persons.get(0).getDivision().getName(), "I");
+            Assertions.assertNotEquals(persons.get(1).getDivision(), persons.get(2).getDivision());
+            Assertions.assertEquals(persons.get(3).getDivision(), persons.get(5).getDivision());
 
             int maxDivisionId = 0;
             for (int i = 0; i < persons.size(); i++) {
-                int divisionId = persons.get(i).division.id;
+                int divisionId = persons.get(i).getDivision().getId();
                 if (divisionId > maxDivisionId) {
                     maxDivisionId = divisionId;
                 }

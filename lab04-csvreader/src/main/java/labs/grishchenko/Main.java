@@ -9,7 +9,7 @@ public class Main {
             List<Person> persons = reader.read("foreign_names.csv", ';');
             int maxDivisionId = 0;
             for (int i = 0; i < persons.size(); i++) {
-                int divisionId = persons.get(i).division.id;
+                int divisionId = persons.get(i).getDivision().getId();
                 if (divisionId > maxDivisionId) {
                     maxDivisionId = divisionId;
                 }
